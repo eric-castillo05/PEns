@@ -14,11 +14,6 @@ Datos ends
 Codigo Segment para public 'code'
 	Principal PROC FAR
 		Assume CS:Codigo, SS:Pila, DS:Datos
-		; change the resolution and clear the window
-		mov ah, 0
-		mov al, 3
-		int 10h
-
 		mov ax, seg Datos
 		mov ds, ax
 		mov ah, 9
@@ -40,13 +35,6 @@ Codigo Segment para public 'code'
 		mov ah, 9
 		mov dx, offset msj3_1
 		int 21h
-	
-		ah, 2
-		mov dx, offset msj2
-		dh, 23
-		dl, 23
-		int 19h
-
 		mov ah, 4ch
 		int 21h
 
