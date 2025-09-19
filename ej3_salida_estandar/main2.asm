@@ -5,7 +5,7 @@ Pila ends
 Datos Segment para public 'code'
         msj1 db "Hello World!", 10, 13, "$"
         msj2 db "Bienvenido", 10, 13, "$"
-        msj3 db "Eric", 10, 13, "$"
+        msj3 db "Diego", 10, 13, "$"
 Datos ends
 
 Codigo Segment para public 'code'
