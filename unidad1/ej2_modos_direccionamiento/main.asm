@@ -23,8 +23,8 @@ Codigo Segment para public 'code'
 		mov ax, seg Datos
 		mov ds, ax
 		mov ax, dddw
-		mov bx, offset dddx
-		mov ax, [bx]
+		mov bx, offset dddx ; &dddx
+		mov ax, [bx] ; *bx
 		mov ax, [bx+2]
 		mov si, 2
 		mov ax, dddz[si]
