@@ -39,6 +39,7 @@ endm
 	main proc far
 		extrn first:far
 		extrn second:far
+		extrn three:far
 		mov ax, @data
 		mov ds, ax
 			
@@ -52,6 +53,8 @@ endm
 			je case_1
 			cmp al, '2'
 			je case_2
+			cmp al, '3'
+			je case_3
 			cmp al, '4'
 			je exit
 		case_1:
@@ -60,7 +63,11 @@ endm
 			jmp cycle_menu
 		case_2:
 			cout_offset ln
-			call second
+			; call second
+			jmp cycle_menu
+		case_3:
+			cout_offset ln
+			call three
 			jmp cycle_menu
 		temporal:
 			cout_offset msj

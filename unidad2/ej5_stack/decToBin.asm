@@ -4,6 +4,7 @@
 	numDecimal db 192
 	base db 2
 	ln db 10, 13, "$"
+	bases db 1, 10, 100
 .code
 	main proc far
 		mov ax, @data

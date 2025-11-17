@@ -1,10 +1,12 @@
 .model small
 .stack
 .data
-	numDecimal db ?
-	base db 2
+	numDecimal dw 0
+	nNumbers db 0
+	base dw 2
 	ln db 10, 13, "$"
-
+	bases db 1, 10, 100
+	
 cout_register macro char
 	mov dl, char
 	mov ah, 2h
@@ -24,28 +26,62 @@ endm
 
 .code
 	public second
-		second proc far
+	second proc far
+		mov nNumbers, 0
+		mov numDecimal, 0
+		
+	cin_numbers:
 		cin
-		cout_offset ln
+		cmp al, 13
+		je exit_cin
 		sub al, 30h
-		mov cx, 8
+		mov bl, al
+		push bx
+		inc nNumbers
+		jmp cin_numbers
+		
+	exit_cin:
+		mov cl, nNumbers
+		mov ch, 0
+		mov si, 0
+		
+	convert_numbers:
+		cmp cl, 0
+		je temp_fun
+		
+		pop bx
+		mov al, bl
 		mov ah, 0
-		cycle:
-			div base
-			push ax
-			mov ah, 0
-			dec cx
-			jnz cycle
+		mov bl, bases[si]
+		mov bh, 0
+		mul bx
+		
+		add numDecimal, ax
+		inc si
+		dec cl
+		jmp convert_numbers
+		
+	temp_fun:
+		mov ax, numDecimal
+		mov dx, 0
 		mov cx, 8
-
-		cout_stack:
-			pop ax
-			add ah, 30h
-			mov dl, ah
-			mov ah, 2
-			int 21h
-			loop cout_stack	
-		cout_offset ln	
+		
+	cycle:
+		div base
+		push dx
+		mov dx, 0
+		dec cx
+		jnz cycle
+		
+		mov cx, 8
+		
+	cout_stack:
+		pop dx
+		add dl, 30h
+		cout_register dl
+		loop cout_stack
+		
+		cout_offset ln
 		ret
 	second endp
 end
