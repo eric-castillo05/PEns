@@ -1,7 +1,7 @@
 .model small
 .stack 100h
 .data
-    nombre db "Diego$"
+    nombre db "Eric$"
 .code
 main proc far
     mov ax, @data
