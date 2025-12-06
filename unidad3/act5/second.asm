@@ -6,6 +6,7 @@
 	base dw 2
 	ln db 10, 13, "$"
 	bases db 1, 10, 100
+	msj db "Ingresa la cantidad: $"
 	
 cout_register macro char
 	mov dl, char
@@ -29,7 +30,7 @@ endm
 	second proc far
 		mov nNumbers, 0
 		mov numDecimal, 0
-		
+		cout_offset msj
 	cin_numbers:
 		cin
 		cmp al, 13

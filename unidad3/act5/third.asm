@@ -5,8 +5,8 @@
     
 .code
 
-public three
-three proc far
+public third
+third proc far
     mov ah, 0
     mov al, 3
     int 10h
@@ -144,5 +144,5 @@ next_row:
     int 10h
     
     ret
-three endp
+third endp
 end
